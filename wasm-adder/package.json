@@ -1,0 +1,13 @@
+{
+  "name": "wasm-adder",
+  "version": "1.0.0",
+  "description": "WASM adder module",
+  "main": "adder.js",
+  "scripts": {
+    "asbuild": "asc src/adder.ts --target release --config aconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.27.1"
+  }
+}
