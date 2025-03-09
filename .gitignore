@@ -3,5 +3,5 @@
 /.idea
 
 # Build
-/**/target
-/**/dist
+/frontend/target
+/frontend/dist

@@ -4,6 +4,7 @@ async function instantiate(module, imports = {}) {
 }
 export const {
   memory,
+  adder,
 } = await (async url => instantiate(
   await (async () => {
     const isNodeOrBun = typeof process != "undefined" && process.versions != null && (process.versions.node != null || process.versions.bun != null);
