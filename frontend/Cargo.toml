@@ -1,0 +1,14 @@
+[package]
+name = "wasm-calculator"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[dependencies]
+leptos = { version = "0.7.7", features = ["csr"] }
+thaw = { version = "0.4.3", features = ["csr"] }
+
+wasm-bindgen = { version = "0.2.100", features = ["serde"] }
+wasm-bindgen-futures = "0.4.50"
+web-sys = "0.3.77"
+js-sys = "0.3.77"
