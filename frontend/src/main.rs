@@ -1,21 +1,17 @@
 use leptos::prelude::*;
 use thaw::*;
-use wasm_bindgen::JsValue;
 use wasm_bindgen::prelude::wasm_bindgen;
 
-#[wasm_bindgen]
+#[wasm_bindgen(module = "wasm-moodules/adder.wasm")]
 extern "C" {
-    #[wasm_bindgen(js_namespace = ["window", "__TAURI__", "core"], js_name = invoke)]
-    async fn invoke_without_args(cmd: &str) -> JsValue;
-
-    #[wasm_bindgen(js_namespace = ["window", "__TAURI__", "core"])]
-    async fn invoke(cmd: &str, args: JsValue) -> JsValue;
+    #[wasm_bindgen()]
+    fn adder(arg1: i32, arg2: i32) -> i32;
 }
 
 fn main() {
     mount_to_body(|| view! {
         <ConfigProvider>
-            <p>test</p>
+            <p>test: {adder(1,2)}</p>
         </ConfigProvider>
     })
 }
