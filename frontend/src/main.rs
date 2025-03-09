@@ -2,7 +2,7 @@ use leptos::prelude::*;
 use thaw::*;
 use wasm_bindgen::prelude::wasm_bindgen;
 
-#[wasm_bindgen(module = "wasm-moodules/adder.wasm")]
+#[wasm_bindgen(module = "/../modules/adder.wasm")]
 extern "C" {
     #[wasm_bindgen()]
     fn adder(arg1: i32, arg2: i32) -> i32;

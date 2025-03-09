@@ -1,6 +1,12 @@
 [build]
 target = "index.html"
 dist = "dist"
+no_sri = true
+
+[serve]
+[[serve.mime_types]]
+extension = "wasm"
+mime_type = "application/wasm"
 
 [watch]
 watch = ["src"]
