@@ -4,6 +4,6 @@ RUN apt-get update
 
 RUN apt install wabt
 
-COPY wasm-subber/src/sub.wat .
+COPY wasm-subber/src/subber.wat .
 
-ENTRYPOINT ["wat2wasm", "sub.wat", "-o", "/modules/sub.wasm"]
+ENTRYPOINT ["wat2wasm", "subber.wat", "-o", "/modules/subber.wasm"]
