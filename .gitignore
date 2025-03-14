@@ -5,3 +5,5 @@
 # Build
 /frontend/target
 /frontend/dist
+/wasm-min/pkg
+/wasm-min/target

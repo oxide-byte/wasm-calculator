@@ -1,20 +1,26 @@
 version: "3"
 services:
 
-  wasm-adder:
+  wasm-add:
     build:
-      dockerfile: adder.Dockerfile
+      dockerfile: wasm-add.Dockerfile
     volumes:
       - ./modules:/modules
 
-  wasm-subber:
+  wasm-sub:
     build:
-      dockerfile: subber.Dockerfile
+      dockerfile: wasm-sub.Dockerfile
     volumes:
       - ./modules:/modules
 
-  wasm-multiplier:
+  wasm-min:
     build:
-      dockerfile: multiplier.Dockerfile
+      dockerfile: wasm-min.Dockerfile
+    volumes:
+      - ./modules:/modules
+
+  wasm-mul:
+    build:
+      dockerfile: wasm-mul.Dockerfile
     volumes:
       - ./modules:/modules

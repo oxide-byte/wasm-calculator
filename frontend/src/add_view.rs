@@ -3,7 +3,8 @@ use leptos::task::spawn_local;
 use log::{error, info};
 use wasm_bindgen::{JsCast, JsValue};
 use wasm_bindgen::prelude::wasm_bindgen;
-const WASM_BYTES: &[u8] = include_bytes!("../../modules/adder.wasm");
+
+const WASM_BYTES: &[u8] = include_bytes!("../../modules/add.wasm");
 
 #[wasm_bindgen]
 pub struct WasmAddModule {
@@ -15,14 +16,16 @@ impl WasmAddModule {
     #[wasm_bindgen(constructor)]
     pub fn new() -> leptos::error::Result<WasmAddModule, JsValue> {
         // Create module from bytes
+        info!("WASM [add] construct...");
         let wasm_module = js_sys::WebAssembly::Module::new(&js_sys::Uint8Array::from(WASM_BYTES))?;
         let imports = js_sys::Object::new();
         let instance = js_sys::WebAssembly::Instance::new(&wasm_module, &imports)?;
+        info!("WASM [add] instance created");
         Ok(WasmAddModule { instance })
     }
 
-    pub fn adder(&self, a: i32, b: i32) -> leptos::error::Result<i32, JsValue> {
-        info!("CALL Adder for {} {}", a, b);
+    pub fn add(&self, a: i32, b: i32) -> leptos::error::Result<i32, JsValue> {
+        info!("CALL [add] for {} {}", a, b);
         let exports = self.instance.exports();
 
         // Debug: Log all available exports
@@ -34,26 +37,26 @@ impl WasmAddModule {
             info!("  Export {}: {:?}", i, key);
         }
 
-        // Try to get the adder function
-        let adder_fn = match js_sys::Reflect::get(&exports, &JsValue::from_str("adder")) {
+        // Try to get the add function
+        let add_fn = match js_sys::Reflect::get(&exports, &JsValue::from_str("add")) {
             Ok(func) => {
-                info!("Found adder function: {:?}", func);
+                info!("Found add function: {:?}", func);
                 match func.dyn_into::<js_sys::Function>() {
                     Ok(f) => f,
                     Err(e) => {
                         error!("Failed to convert to Function: {:?}", e);
-                        return Err(JsValue::from_str("adder is not a function"));
+                        return Err(JsValue::from_str("add is not a function"));
                     }
                 }
             },
             Err(e) => {
-                error!("Failed to get adder function: {:?}", e);
+                error!("Failed to get add function: {:?}", e);
                 return Err(e);
             }
         };
 
         // Call the function with better error handling
-        match adder_fn.call2(&JsValue::NULL, &JsValue::from(a), &JsValue::from(b)) {
+        match add_fn.call2(&JsValue::NULL, &JsValue::from(a), &JsValue::from(b)) {
             Ok(result) => {
                 match result.as_f64() {
                     Some(num) => {
@@ -66,7 +69,7 @@ impl WasmAddModule {
                 }
             },
             Err(e) => {
-                error!("Error calling adder function: {:?}", e);
+                error!("Error calling add function: {:?}", e);
                 Err(e)
             }
         }
@@ -92,7 +95,7 @@ pub fn AddView(v1: RwSignal<String>, v2: RwSignal<String>) -> impl IntoView {
                 spawn_local(async move {
                     match WasmAddModule::new() {
                         Ok(wasm_module) => {
-                            match wasm_module.adder(n1, n2) {
+                            match wasm_module.add(n1, n2) {
                                 Ok(sum) => {
                                     result.set(Some(sum));
                                     error.set(None);

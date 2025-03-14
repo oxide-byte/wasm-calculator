@@ -6,7 +6,7 @@ WORKDIR /app
 RUN npm install -g assemblyscript
 
 # Copy Source files
-COPY wasm-adder .
+COPY wasm-add .
 
 # Install dependencies
 RUN npm install

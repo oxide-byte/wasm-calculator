@@ -1,14 +1,14 @@
 {
   "targets": {
     "debug": {
-      "outFile": "/modules/adder.wasm",
-      "textFile": "/modules/adder.wat",
+      "outFile": "/modules/add.wasm",
+      "textFile": "/modules/add.wat",
       "sourceMap": true,
       "debug": true
     },
     "release": {
-      "outFile": "/modules/adder.wasm",
-      "textFile": "/modules/adder.wat",
+      "outFile": "/modules/add.wasm",
+      "textFile": "/modules/add.wat",
       "sourceMap": false,
       "optimizeLevel": 3,
       "shrinkLevel": 1,
