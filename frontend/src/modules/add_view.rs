@@ -4,7 +4,7 @@ use log::{error, info};
 use wasm_bindgen::{JsCast, JsValue};
 use wasm_bindgen::prelude::wasm_bindgen;
 
-const WASM_BYTES: &[u8] = include_bytes!("../../modules/add.wasm");
+const WASM_BYTES: &[u8] = include_bytes!("../../../modules/add.wasm");
 
 #[wasm_bindgen]
 pub struct WasmAddModule {

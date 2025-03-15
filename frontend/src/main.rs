@@ -1,12 +1,9 @@
-mod add_view;
-mod sub_view;
-mod min_view;
+mod modules;
 
 use leptos::prelude::*;
 use thaw::*;
-use crate::add_view::AddView;
-use crate::min_view::MinView;
-use crate::sub_view::SubView;
+
+use crate::modules::*;
 
 #[component]
 pub fn WasmCalculator() -> impl IntoView {
@@ -21,6 +18,7 @@ pub fn WasmCalculator() -> impl IntoView {
         <AddView v1=v1 v2=v2></AddView>
         <SubView v1=v1 v2=v2></SubView>
         <MinView v1=v1 v2=v2></MinView>
+        <MulView v1=v1 v2=v2></MulView>
         </div>
     }
 }

@@ -1,24 +1,42 @@
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+
 plugins {
-    kotlin("multiplatform") version "1.8.20"
+    alias(libs.plugins.kotlinMultiplatform)
 }
+
+group = "com.bindstone"
+version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
 
 kotlin {
-    wasm {
+    wasmJs {
         binaries.executable()
         browser {
-            // Configure WebAssembly target
+            commonWebpackConfig {
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    static = (static ?: mutableListOf()).apply {
+                        add(project.rootDir.path)
+                    }
+                }
+            }
         }
     }
 
     sourceSets {
-        val wasmMain by getting {
+      val commonMain by getting
+        val commonTest by getting {
             dependencies {
-                implementation(kotlin("stdlib"))
+                implementation(libs.kotlin.test)
             }
         }
+        val wasmJsMain by getting {
+            dependencies {
+                implementation(libs.kotlinx.browser)
+            }
+        }
+        val wasmJsTest by getting
     }
 }
