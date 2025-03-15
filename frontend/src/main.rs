@@ -11,14 +11,21 @@ pub fn WasmCalculator() -> impl IntoView {
     let v2 = RwSignal::new(String::from(""));
 
     view! {
-        <div class="max-w-md mx-auto mt-10 mt-3 p-5 bg-white rounded-lg shadow-lg">
+        <div class="mx-auto ml-40 mr-40 mt-5 p-5 bg-white rounded-lg shadow-lg">
         <p>"WASM Calculator:"</p>
         <div>"Value 1:  "<Input value=v1/></div>
         <div>"Value 2:  "<Input value=v2/></div>
-        <AddView v1=v1 v2=v2></AddView>
-        <SubView v1=v1 v2=v2></SubView>
-        <MinView v1=v1 v2=v2></MinView>
-        <MulView v1=v1 v2=v2></MulView>
+        <table>
+            <tr>
+                <td><AddView v1=v1 v2=v2></AddView></td>
+                <td><SubView v1=v1 v2=v2></SubView></td>
+                <td><MinView v1=v1 v2=v2></MinView></td>
+            </tr>
+            <tr>
+                <td><MulView v1=v1 v2=v2></MulView></td>
+                <td><DivView v1=v1 v2=v2></DivView></td>
+            </tr>
+        </table>
         </div>
     }
 }

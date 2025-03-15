@@ -10,16 +10,17 @@ To not install all the languages, the build is done with Docker Images and build
 
 *Build WASM modules* : docker-compose up --build
 
-| *module* | *language* |  | *module*  | *language* |
-|----------|------------|--|-----------|------------|
-| wasm-add | Typescript |  | wasm-div  | Kotlin     | 
-| wasm-sub | WAT        |  |
+| *module* | *language* |  | *module* | *language* |
+|----------|------------|--|----------|------------|
+| wasm-add | Typescript |  | wasm-mul | Kotlin     | 
+| wasm-sub | WAT        |  | wasm-div | Go         | 
 | wasm-min | Rust       |  |
 
 executing the Leptos application, you need have installed Rust + Trunk
 
 *Executing frontend* : trunk serve
 
+![alt text](demo.png "demo")
 
 Links:
 

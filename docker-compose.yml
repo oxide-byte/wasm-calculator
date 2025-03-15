@@ -24,3 +24,9 @@ services:
       dockerfile: wasm-mul.Dockerfile
     volumes:
       - ./modules:/modules
+
+  wasm-div:
+    build:
+      dockerfile: wasm-div.Dockerfile
+    volumes:
+      - ./modules:/modules
