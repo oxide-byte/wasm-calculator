@@ -30,3 +30,9 @@ services:
       dockerfile: wasm-div.Dockerfile
     volumes:
       - ./modules:/modules
+
+  wasm-max:
+    build:
+      dockerfile: wasm-max.Dockerfile
+    volumes:
+      - ./modules:/modules

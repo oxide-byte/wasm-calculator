@@ -24,6 +24,7 @@ pub fn WasmCalculator() -> impl IntoView {
             <tr>
                 <td><MulView v1=v1 v2=v2></MulView></td>
                 <td><DivView v1=v1 v2=v2></DivView></td>
+                <td><MaxView v1=v1 v2=v2></MaxView></td>
             </tr>
         </table>
         </div>
