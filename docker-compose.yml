@@ -36,3 +36,9 @@ services:
       dockerfile: wasm-max.Dockerfile
     volumes:
       - ./modules:/modules
+
+  wasm-power:
+    build:
+      dockerfile: wasm-power.Dockerfile
+    volumes:
+      - ./modules:/modules
