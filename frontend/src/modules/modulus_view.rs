@@ -3,28 +3,28 @@ use leptos::task::spawn_local;
 use log::{error, info};
 use wasm_bindgen::{JsCast, JsValue};
 use wasm_bindgen::prelude::wasm_bindgen;
-const WASM_BYTES: &[u8] = include_bytes!("../../../modules/max.wasm");
+const WASM_BYTES: &[u8] = include_bytes!("../../../modules/mod.wasm");
 
 #[wasm_bindgen]
-pub struct WasmMaxModule {
+pub struct WasmModulusModule {
     instance: js_sys::WebAssembly::Instance,
 }
 
 #[wasm_bindgen]
-impl WasmMaxModule {
+impl WasmModulusModule {
     #[wasm_bindgen(constructor)]
-    pub fn new() -> leptos::error::Result<WasmMaxModule, JsValue> {
+    pub fn new() -> leptos::error::Result<WasmModulusModule, JsValue> {
         // Create module from bytes
-        info!("WASM [max] construct...");
+        info!("WASM [Modulus] construct...");
         let wasm_module = js_sys::WebAssembly::Module::new(&js_sys::Uint8Array::from(WASM_BYTES))?;
         let imports = js_sys::Object::new();
         let instance = js_sys::WebAssembly::Instance::new(&wasm_module, &imports)?;
-        info!("WASM [max] instance created");
-        Ok(WasmMaxModule { instance })
+        info!("WASM [Modulus] instance created");
+        Ok(WasmModulusModule { instance })
     }
 
-    pub fn max(&self, a: i32, b: i32) -> leptos::error::Result<i32, JsValue> {
-        info!("CALL [max] for {} {}", a, b);
+    pub fn Modulus(&self, a: i32, b: i32) -> leptos::error::Result<i32, JsValue> {
+        info!("CALL [Modulus] for {} {}", a, b);
         let exports = self.instance.exports();
 
         // Debug: Log all available exports
@@ -36,26 +36,26 @@ impl WasmMaxModule {
             info!("  Export {}: {:?}", i, key);
         }
 
-        // Try to get the max function
-        let max_fn = match js_sys::Reflect::get(&exports, &JsValue::from_str("max")) {
+        // Try to get the Modulus function Look WAT
+        let Modulus_fn = match js_sys::Reflect::get(&exports, &JsValue::from_str("c")) {
             Ok(func) => {
-                info!("Found max function: {:?}", func);
+                info!("Found Modulus function: {:?}", func);
                 match func.dyn_into::<js_sys::Function>() {
                     Ok(f) => f,
                     Err(e) => {
                         error!("Failed to convert to Function: {:?}", e);
-                        return Err(JsValue::from_str("max is not a function"));
+                        return Err(JsValue::from_str("Modulus is not a function"));
                     }
                 }
             },
             Err(e) => {
-                error!("Failed to get max function: {:?}", e);
+                error!("Failed to get Modulus function: {:?}", e);
                 return Err(e);
             }
         };
 
         // Call the function with better error handling
-        match max_fn.call2(&JsValue::NULL, &JsValue::from(a), &JsValue::from(b)) {
+        match Modulus_fn.call2(&JsValue::NULL, &JsValue::from(a), &JsValue::from(b)) {
             Ok(result) => {
                 match result.as_f64() {
                     Some(num) => {
@@ -68,7 +68,7 @@ impl WasmMaxModule {
                 }
             },
             Err(e) => {
-                error!("Error calling max function: {:?}", e);
+                error!("Error calling Modulus function: {:?}", e);
                 Err(e)
             }
         }
@@ -76,7 +76,7 @@ impl WasmMaxModule {
 }
 
 #[component]
-pub fn MaxView(v1: RwSignal<String>, v2: RwSignal<String>) -> impl IntoView {
+pub fn ModulusView(v1: RwSignal<String>, v2: RwSignal<String>) -> impl IntoView {
 
     let result = RwSignal::new(None::<i32>);
     let error = RwSignal::new(None::<String>);
@@ -92,9 +92,9 @@ pub fn MaxView(v1: RwSignal<String>, v2: RwSignal<String>) -> impl IntoView {
 
                 // Use spawn_local for the async WASM operation
                 spawn_local(async move {
-                    match WasmMaxModule::new() {
+                    match WasmModulusModule::new() {
                         Ok(wasm_module) => {
-                            match wasm_module.max(n1, n2) {
+                            match wasm_module.Modulus(n1, n2) {
                                 Ok(sum) => {
                                     result.set(Some(sum));
                                     error.set(None);
@@ -124,7 +124,7 @@ pub fn MaxView(v1: RwSignal<String>, v2: RwSignal<String>) -> impl IntoView {
 
     view! {
         <div class="max-w-md mx-auto mt-10 mt-3 p-5 bg-white rounded-lg shadow-lg">
-            <p class="mb-5"> MAX calculated with a Java WASM module (TODO)</p>
+            <p class="mb-5"> Modulus calculated with a Dart WASM module (TODO)</p>
             <p>"Result: " {move || result.get().map(|n| n.to_string()).unwrap_or_else(|| "No result".to_string())}</p>
         </div>
     }

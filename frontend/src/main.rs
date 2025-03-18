@@ -28,7 +28,7 @@ pub fn WasmCalculator() -> impl IntoView {
             </tr>
             <tr>
                 <td><PowerView v1=v1 v2=v2></PowerView></td>
-                <td></td>
+                <td><ModulusView v1=v1 v2=v2></ModulusView></td>
                 <td></td>
             </tr>
         </table>

@@ -42,3 +42,9 @@ services:
       dockerfile: wasm-power.Dockerfile
     volumes:
       - ./modules:/modules
+
+  wasm-modulus:
+    build:
+      dockerfile: wasm-modulus.Dockerfile
+    volumes:
+      - ./modules:/modules

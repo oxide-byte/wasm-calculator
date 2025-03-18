@@ -124,7 +124,7 @@ pub fn DivView(v1: RwSignal<String>, v2: RwSignal<String>) -> impl IntoView {
 
     view! {
         <div class="max-w-md mx-auto mt-10 mt-3 p-5 bg-white rounded-lg shadow-lg">
-            <p class="mb-5"> DIV calculated with a Go WASM module </p>
+            <p class="mb-5"> DIV calculated with a Go WASM module (TODO)</p>
             <p>"Result: " {move || result.get().map(|n| n.to_string()).unwrap_or_else(|| "No result".to_string())}</p>
         </div>
     }

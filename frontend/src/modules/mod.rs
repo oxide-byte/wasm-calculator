@@ -5,6 +5,7 @@ pub mod mul_view;
 mod div_view;
 mod max_view;
 mod power_view;
+mod modulus_view;
 
 pub use crate::modules::add_view::AddView;
 pub use crate::modules::sub_view::SubView;
@@ -13,3 +14,4 @@ pub use crate::modules::mul_view::MulView;
 pub use crate::modules::div_view::DivView;
 pub use crate::modules::max_view::MaxView;
 pub use crate::modules::power_view::PowerView;
+pub use crate::modules::modulus_view::ModulusView;
