@@ -48,3 +48,9 @@ services:
       dockerfile: wasm-modulus.Dockerfile
     volumes:
       - ./modules:/modules
+
+  wasm-concat:
+    build:
+      dockerfile: wasm-concat.Dockerfile
+    volumes:
+      - ./modules:/modules

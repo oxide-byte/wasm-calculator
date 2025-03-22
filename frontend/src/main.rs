@@ -29,7 +29,7 @@ pub fn WasmCalculator() -> impl IntoView {
             <tr>
                 <td><PowerView v1=v1 v2=v2></PowerView></td>
                 <td><ModulusView v1=v1 v2=v2></ModulusView></td>
-                <td></td>
+                <td><ConcatView v1=v1 v2=v2></ConcatView></td>
             </tr>
         </table>
         </div>
