@@ -54,3 +54,9 @@ services:
       dockerfile: wasm-concat.Dockerfile
     volumes:
       - ./modules:/modules
+
+  wasm-digit-count:
+    build:
+      dockerfile: wasm-digit-count.Dockerfile
+    volumes:
+      - ./modules:/modules

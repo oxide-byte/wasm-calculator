@@ -20,16 +20,19 @@ pub fn WasmCalculator() -> impl IntoView {
                 <td><AddView v1=v1 v2=v2></AddView></td>
                 <td><SubView v1=v1 v2=v2></SubView></td>
                 <td><MinView v1=v1 v2=v2></MinView></td>
+                <td><DigitCountView v1=v1 v2=v2></DigitCountView></td>
             </tr>
             <tr>
                 <td><MulView v1=v1 v2=v2></MulView></td>
                 <td><DivView v1=v1 v2=v2></DivView></td>
                 <td><MaxView v1=v1 v2=v2></MaxView></td>
+                <td></td>
             </tr>
             <tr>
                 <td><PowerView v1=v1 v2=v2></PowerView></td>
                 <td><ModulusView v1=v1 v2=v2></ModulusView></td>
                 <td><ConcatView v1=v1 v2=v2></ConcatView></td>
+                <td></td>
             </tr>
         </table>
         </div>

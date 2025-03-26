@@ -7,6 +7,7 @@ mod max_view;
 mod power_view;
 mod modulus_view;
 mod concat_view;
+mod digit_count_view;
 
 pub use crate::modules::add_view::AddView;
 pub use crate::modules::sub_view::SubView;
@@ -17,3 +18,4 @@ pub use crate::modules::max_view::MaxView;
 pub use crate::modules::power_view::PowerView;
 pub use crate::modules::modulus_view::ModulusView;
 pub use crate::modules::concat_view::ConcatView;
+pub use crate::modules::digit_count_view::DigitCountView;
